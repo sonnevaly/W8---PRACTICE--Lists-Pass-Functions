@@ -1,32 +1,43 @@
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  final VoidCallback onStart;
+  const WelcomeScreen({super.key, required this.startButtonPressed});
 
-  const WelcomeScreen({super.key, required this.onStart});
+  final VoidCallback startButtonPressed;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.teal,
-      child: Center(
+    return Center(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(Icons.thermostat, color: Colors.white, size: 80),
-            const SizedBox(height: 20),
-            const Text(
-              "Welcome !",
-              style: TextStyle(fontSize: 30, color: Colors.white),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: onStart,
-              child: const Text("Start to convert"),
-            ),
-          ],
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Icon(
+            Icons.thermostat_outlined,
+            size: 120,
+            color: Colors.white,
+          ),
         ),
-      ),
-    );
+        const Text(
+          "Welcome !",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 50,
+          ),
+        ),
+        const SizedBox(height: 15),
+        OutlinedButton(
+          onPressed: startButtonPressed,
+          style: OutlinedButton.styleFrom(
+              side: const BorderSide(width: 1.0, color: Colors.white)),
+          child: const Text('Start to convert',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+              )),
+        )
+      ],
+    ));
   }
 }
